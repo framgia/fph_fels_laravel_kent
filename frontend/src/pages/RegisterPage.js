@@ -3,6 +3,7 @@ import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
 import FormTemplate from '../components/FormTemplate';
 import ParticlesBg from "particles-bg";
+import { useState, useEffect } from 'react';
 import { 
   Form,
   Container,
@@ -11,6 +12,13 @@ import {
 } from 'react-bootstrap';
 
 export default function RegisterPage() {
+  const [ name, setName ] = useState();
+  const [ userName, setUserName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ thumbnail, setThumbnail ] = useState();
+
+
   return (
     <>
       <Head title="Register | E-Learning System" />
@@ -38,7 +46,7 @@ export default function RegisterPage() {
       <Container className="wrapper">
         <Row className="justify-content-center">
           <Form className="formSize bg-white p-4">
-            <h1 className="my-4 text-center font-weight-bold">Register Page</h1>
+            <h1 className="my-5 pt-5 text-center font-weight-bold">Register Page</h1>
             <FormTemplate 
               formControlId="formBasicName" 
               formLabel="Name" 
@@ -74,12 +82,19 @@ export default function RegisterPage() {
               formControlPlaceholder="Confirm your password here"
             />
 
+
+            <FormTemplate
+              formControlId="formFile"
+              formLabel="Profile Picture"
+              formControlType="file"
+            />
+
             <Button className="bg-primary d-block mx-auto w-100 my-5" type="submit">Submit</Button>
           </Form>
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-3 mt-5 fixed-bottom"/>
+      <Footer footerClass="text-center border-top pt-3 mt-5"/>
       <ParticlesBg type="cobweb" bg={true} />
     </>
   );
