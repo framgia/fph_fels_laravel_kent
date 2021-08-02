@@ -2,7 +2,6 @@ import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import CardTemplate from '../components/CardTemplate';
 import Footer from '../components/Footer';
-import ParticlesBg from 'particles-bg';
 import { 
   Jumbotron,
 } from 'react-bootstrap';
@@ -66,7 +65,6 @@ const LandingPage = () => {
       </div>
 
       <Footer footerClass="text-center border-top pt-3 mt-5"/>
-      <ParticlesBg type="cobweb" bg={true} />
     </>
   );
 };

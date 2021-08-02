@@ -37,7 +37,7 @@ export default function RegisterPage() {
       <Container className="wrapper">
         <Row className="justify-content-center">
           <Form className="formSize bg-white p-4">
-            <h1 className="my-4 text-center font-weight-bold">Register Page</h1>
+            <h1 className="my-5 pt-5 text-center font-weight-bold">Register Page</h1>
             <FormTemplate 
               formControlId="formBasicName" 
               formLabel="Name" 
