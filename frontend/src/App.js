@@ -4,12 +4,21 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import RegisterPage from './pages/RegisterPage';
 import LandingPage from './pages/LandingPage';
 import React from 'react';
+<<<<<<< HEAD
+=======
+
+>>>>>>> a97ba6c (added: register page)
 import {
   BrowserRouter as Router, 
   Switch, 
   Route
 } from 'react-router-dom';
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a97ba6c (added: register page)
 function App() {
   return (
     <div className='App'>
