@@ -14,3 +14,7 @@ body{font-size: 16px}
 
 /* quote body */
 .cardQuote:hover{background: rgb(238, 238, 238); color: white;}
+
+/* form size */
+.formSize{width: 500px}
+

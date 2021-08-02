@@ -1,7 +1,7 @@
-export default function Footer() {
+export default function Footer(props) {
   return (
     <>
-      <footer className="text-center border-top pt-3 mt-5">
+      <footer className={props.footerClass}>
         <p>All Rights Reserved. &copy; Copyright 2021</p>
       </footer>
     </>
