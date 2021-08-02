@@ -1,39 +1,16 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+*{margin: 0; padding: 0; box-sizing: border-box; font-family: 'Lato', sans-serif;}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
-}
+.wrapper{width: 100%; max-width: 1080px; position: relative; margin: 0 auto;}
 
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-}
+body{font-size: 16px}
 
-.App-link {
-  color: rgb(112, 76, 182);
-}
+/* navitation */
+.navLink:hover{border-right: 1px solid black; border-left: 1px solid black;}
 
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
+/* card template */
+.cardBody:hover{background: darkblue; color: white;}
+
+/* quote body */
+.cardQuote:hover{background: rgb(238, 238, 238); color: white;}
