@@ -26,8 +26,8 @@ const LandingPage = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <Navlink icon={<i className="bi bi-door-open pr-1"></i>} navLink="#" navName="Login"/>
-            <Navlink icon={<i className="bi bi-person-plus pr-1"></i>} navLink="#" navName="Register" />
+            <Navlink navClass="nav-link navLink" icon={<i className="bi bi-door-open pr-1"></i>} navLink="#" navName="Login"/>
+            <Navlink navClass="nav-link navLink" icon={<i className="bi bi-person-plus pr-1"></i>} navLink="/register" navName="Register" />
           </ul>
         </div>
       </nav>
@@ -65,7 +65,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer footerClass="text-center border-top pt-3 mt-5"/>
       <ParticlesBg type="cobweb" bg={true} />
     </>
   );
