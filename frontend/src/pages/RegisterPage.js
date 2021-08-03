@@ -2,7 +2,6 @@ import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
 import FormTemplate from '../components/FormTemplate';
-import ParticlesBg from "particles-bg";
 import { 
   Form,
   Container,
@@ -80,7 +79,6 @@ export default function RegisterPage() {
       </Container>
 
       <Footer footerClass="text-center border-top pt-3 mt-5 fixed-bottom"/>
-      <ParticlesBg type="cobweb" bg={true} />
     </>
   );
-};
+}; 

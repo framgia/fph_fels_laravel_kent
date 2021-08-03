@@ -14,4 +14,4 @@ function Head(props) {
   );
 }
 
-export default Head;
+export default Head; 
