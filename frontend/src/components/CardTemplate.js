@@ -13,4 +13,4 @@ function CardTemplate(props) {
   );
 };
 
-export default CardTemplate; 
+export default CardTemplate;

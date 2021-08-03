@@ -81,4 +81,4 @@ export default function RegisterPage() {
       <Footer footerClass="text-center border-top pt-3 mt-5 fixed-bottom"/>
     </>
   );
-}; 
+};
