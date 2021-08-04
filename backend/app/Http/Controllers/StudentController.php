@@ -14,17 +14,17 @@ class StudentController extends Controller
       'name' => 'required|string|max:255',
       'username' => 'required|string|max:255',
       'email' => 'required|string|unique:students,email|max:255',
-      'thumbnail' => 'required|image|max:255',
+      'thumbnail' => 'nullable|image|max:255',
       'password' => 'required|string|confirmed|max:255'
     ]);
 
-    $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-
+    // $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+    
     Student::create([
       'name' => $fields['name'],
       'username' => $fields['username'],
       'email' => $fields['email'],
-      'thumbnail' => $fields['thumbnail'],
+      // 'thumbnail' => $fields['thumbnail'],
       'password' => bcrypt($fields['password'])
     ]);
 
