@@ -8,13 +8,14 @@ use Illuminate\Http\Request;
 class StudentController extends Controller
 {
   // register a new user
-  public function store(Request $request) {
+  public function store(Request $request) 
+  {
     $fields = $request->validate([
-      'name' => 'required|string',
-      'username' => 'required|string',
-      'email' => 'required|string|unique:students,email',
-      'thumbnail' => 'required|image',
-      'password' => 'required|string|confirmed'
+      'name' => 'required|string|max:255',
+      'username' => 'required|string|max:255',
+      'email' => 'required|string|unique:students,email|max:255',
+      'thumbnail' => 'required|image|max:255',
+      'password' => 'required|string|confirmed|max:255'
     ]);
 
     $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -27,13 +28,8 @@ class StudentController extends Controller
       'password' => bcrypt($fields['password'])
     ]);
 
-    $token = $student->createToken('myapptoken')->plainTextToken;
+    $student->createToken('myapptoken')->plainTextToken;
 
-    $response = [
-      'student' => $student,
-      'token' => $token
-    ];
-
-    return response($response, 201);
+    return request()->json('Successfully created.', 200);
   }
 }

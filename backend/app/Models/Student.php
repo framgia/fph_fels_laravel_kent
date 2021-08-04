@@ -12,13 +12,7 @@ class Student extends Model
     use HasFactory, Notifiable, HasApiTokens;
 
     // mass assignment
-    protected $fillable = [
-      'name',
-      'username',
-      'email',
-      'thumbnail',
-      'password'
-    ];
+    protected $guarded = [];
 
     protected $hidden = [
       'password',
