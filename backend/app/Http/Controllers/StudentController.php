@@ -15,7 +15,7 @@ class StudentController extends Controller
       'username' => 'required|string|max:255',
       'email' => 'required|string|unique:students,email|max:255',
       'thumbnail' => 'nullable|image|max:255',
-      'password' => 'required|string|confirmed|max:255'
+      'password' => 'required|string|confirmed'
     ]);
 
     /* 

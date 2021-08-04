@@ -26,8 +26,7 @@ const LandingPage = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <Navlink navClass="nav-link navLink" icon={<i className="bi bi-door-open pr-1"></i>} navLink="#" navName="Login"/>
-            <Navlink navClass="nav-link navLink" icon={<i className="bi bi-person-plus pr-1"></i>} navLink="/register" navName="Register" />
+            <Navlink />
           </ul>
         </div>
       </nav>

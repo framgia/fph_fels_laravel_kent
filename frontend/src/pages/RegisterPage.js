@@ -3,6 +3,7 @@ import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
 import FormTemplate from '../components/FormTemplate';
 import Swal from 'sweetalert2';
+import UserAuthApi from '../api/UserAuthApi';
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
 
@@ -23,25 +24,21 @@ export default function RegisterPage() {
     }
   }, [ name, username, email, password, passwordConfirm ]);
 
+  // payload for post a new user
+  const payload = {
+    name: name,
+    username: username,
+    email: email,
+    password: password,
+    passwordConfirm: passwordConfirm
+  };
+
   // register a user
   function registerUser(e) {
     e.preventDefault();
 
-    fetch('http://localhost:8000/api/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      body: JSON.stringify({
-        name: name,
-        username: username,
-        email: email,
-        password: password,
-        password_confirmation: passwordConfirm
-      })
-    }).then(res => res.json()).then(data => {
-      if(data === 200) {
+    UserAuthApi.register(payload).then(res => res.json()).then(data => {
+      if (data === 200) {
         Swal.fire(
           'Congratulation!',
           'You have successfully created your account',
@@ -77,8 +74,7 @@ export default function RegisterPage() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
-            <Navlink navClass="nav-link navLink" icon={<i className="bi bi-door-open pr-1"></i>} navLink="#" navName="Login" />
-            <Navlink navClass="nav-link navLink active font-italic" icon={<i className="bi bi-person-plus pr-1"></i>} navLink="/register" navName="Register" />
+            <Navlink />
           </ul>
         </div>
       </nav>
