@@ -18,13 +18,20 @@ class StudentController extends Controller
       'password' => 'required|string|confirmed|max:255'
     ]);
 
-    // $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+    /* 
+      $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        - This line of code is used to store the image inside the storage/app/thumbnails for easy access.
+        - Profile picture is not yet needed in the register page.
+        - Will integrate this one once the user will be able to acces the profile page.
+
+      'thumbnail' => $fields['thumbnail'],
+        - thumbnail upload is optional in register page.
+    */
     
     Student::create([
       'name' => $fields['name'],
       'username' => $fields['username'],
       'email' => $fields['email'],
-      // 'thumbnail' => $fields['thumbnail'],
       'password' => bcrypt($fields['password'])
     ]);
 

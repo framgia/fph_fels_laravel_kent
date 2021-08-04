@@ -16,7 +16,7 @@ export default function RegisterPage() {
 
   // set submit to active if criteria is met.
   useEffect(() => {
-    if ((name !== "" && username !== "" && email !== "" && password !== "" && passwordConfirm !== "") && (password === passwordConfirm)) {
+    if (((name && username && email && password && passwordConfirm) !== "") && (password === passwordConfirm)) {
       setBtnActive(true)
     } else {
       setBtnActive(false)
@@ -30,8 +30,8 @@ export default function RegisterPage() {
     fetch('http://localhost:8000/api/register', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
-        // 'X-Requested-With': 'XMLHttpRequest'
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
       },
       body: JSON.stringify({
         name: name,
