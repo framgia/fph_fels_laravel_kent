@@ -20,15 +20,13 @@ class StudentController extends Controller
 
     $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
 
-    $student = Student::create([
+    Student::create([
       'name' => $fields['name'],
       'username' => $fields['username'],
       'email' => $fields['email'],
       'thumbnail' => $fields['thumbnail'],
       'password' => bcrypt($fields['password'])
     ]);
-
-    $student->createToken('myapptoken')->plainTextToken;
 
     return request()->json('Successfully created.', 200);
   }
