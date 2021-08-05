@@ -1,11 +1,13 @@
+// package imports
+import ParticlesBg from 'particles-bg';
+import { Jumbotron } from 'react-bootstrap';
+
+// react components imports
 import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import CardTemplate from '../components/CardTemplate';
 import Footer from '../components/Footer';
-import ParticlesBg from 'particles-bg';
-import { 
-  Jumbotron,
-} from 'react-bootstrap';
+
 
 const LandingPage = () => {
   return (
@@ -64,7 +66,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5"/>
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper"/>
       <ParticlesBg type="cobweb" bg={true} />
     </>
   );

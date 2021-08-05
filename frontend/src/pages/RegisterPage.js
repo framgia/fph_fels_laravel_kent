@@ -1,11 +1,15 @@
+// package imports
+import Swal from 'sweetalert2';
+import { useState, useEffect } from 'react';
+import { Form, Container, Row, Button } from 'react-bootstrap';
+
+// react components imports
 import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
 import FormTemplate from '../components/FormTemplate';
-import Swal from 'sweetalert2';
 import UserAuthApi from '../api/UserAuthApi';
-import { useState, useEffect } from 'react';
-import { Form, Container, Row, Button } from 'react-bootstrap';
+
 
 export default function RegisterPage() {
   const [ name, setName ] = useState('');
@@ -138,7 +142,7 @@ export default function RegisterPage() {
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5"/>
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper"/>
     </>
   );
 };

@@ -1,9 +1,13 @@
+// package imports
+import { useState, useEffect } from 'react';
+import { Form, Container, Row, Button } from 'react-bootstrap';
+
+// react components imports
 import Head from '../components/Head';
 import Footer from '../components/Footer';
 import Navlink from '../components/Navlink';
 import FormTemplate from '../components/FormTemplate';
-import { useState, useEffect } from 'react';
-import { Form, Container, Row, Button } from 'react-bootstrap';
+
 
 export default function LoginPage() {
 
@@ -13,7 +17,7 @@ export default function LoginPage() {
 
   // control the functionality of submit button
   useEffect(() => {
-    if((email&& password) !== "") {
+    if((email && password) !== "") {
       setBtnActive(true);
     } else {
       setBtnActive(false);
@@ -79,7 +83,7 @@ export default function LoginPage() {
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 fixed-bottom" />
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 fixed-bottom wrapper" />
     </>
   );
 };
