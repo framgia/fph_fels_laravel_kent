@@ -1,17 +1,17 @@
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { renderToString } from 'react-dom/server';
 
-function Head(props) {
-  return(
-    <div>
-      <HelmetProvider>
-        <Helmet>
-          <html lang="en" />
-          <title>{props.title}</title>
-          <meta name="description" content="E-learning system" />
-        </Helmet>
-      </HelmetProvider>
-    </div>
+export default function Head(props) {
+
+  const head = (
+    <HelmetProvider>
+      <Helmet>
+        <title>{props.title}</title>
+      </Helmet>
+    </HelmetProvider>
   );
-}
 
-export default Head;
+  const Head = renderToString(head);
+
+  return Head;
+};
