@@ -1,8 +1,6 @@
-// package imports
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
 
-// react components imports
 import Head from '../components/Head';
 import Footer from '../components/Footer';
 import Navlink from '../components/Navlink';

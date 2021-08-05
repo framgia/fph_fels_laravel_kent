@@ -1,8 +1,6 @@
-// package imports
 import ParticlesBg from 'particles-bg';
 import { Jumbotron } from 'react-bootstrap';
 
-// react components imports
 import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import CardTemplate from '../components/CardTemplate';
