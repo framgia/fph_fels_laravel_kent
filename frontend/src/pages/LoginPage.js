@@ -1,13 +1,18 @@
+import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 import Head from '../components/Head';
 import Footer from '../components/Footer';
 import Navlink from '../components/Navlink';
 import FormTemplate from '../components/FormTemplate';
+import UserAuthApi from '../api/UserAuthApi';
+
 
 
 export default function LoginPage() {
+  let history = useHistory();
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
@@ -22,8 +27,35 @@ export default function LoginPage() {
     }
   }, [ email, password ]);
 
+  // payload for post a new user
+  const payload = {
+    email: email,
+    password: password,
+  };
+
+  // function to log in a user
   function loginUser(e) {
     e.preventDefault();
+
+    UserAuthApi.login(payload).then(res => res.json()).then(data => {
+      localStorage.setItem('token', data.token);
+
+      if (data.token !== undefined || data.token !== null) {
+        Swal.fire(
+          'Congratulation!',
+          'You have successfully logged in to E-Learning System.',
+          'success'
+        ).then(() => {
+          history.push('/dashboard');
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please try again!',
+          text: 'Something went wrong!',
+        });
+      }
+    });
   };
 
   return (

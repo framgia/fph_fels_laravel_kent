@@ -13,10 +13,26 @@ const UserAuthApi = {
         password: params.password,
         password_confirmation: params.passwordConfirm
       })
-    }
+    };
 
     return fetch('http://localhost:8000/api/register', options);
   },
+
+  login: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        email: params.email,
+        password: params.password
+      })
+    };
+
+    return fetch('http://localhost:8000/api/login', options);
+  }
 };
 
 export default UserAuthApi;
