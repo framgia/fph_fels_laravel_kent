@@ -7,9 +7,7 @@ import Head from '../components/Head';
 import Footer from '../components/Footer';
 import Navlink from '../components/Navlink';
 import FormTemplate from '../components/FormTemplate';
-import UserAuthApi from '../api/UserAuthApi';
-
-
+import UserAuthApi from '../helpers/UserAuthApi';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -38,21 +36,20 @@ export default function LoginPage() {
     e.preventDefault();
 
     UserAuthApi.login(payload).then(res => res.json()).then(data => {
-      localStorage.setItem('token', data.token);
-
-      if (data.token !== undefined || data.token !== null) {
+      if (data.token === undefined) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please try again!',
+          text: 'Something went wrong!',
+        });
+      } else {
         Swal.fire(
           'Congratulation!',
           'You have successfully logged in to E-Learning System.',
           'success'
         ).then(() => {
-          history.push('/dashboard');
-        });
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Please try again!',
-          text: 'Something went wrong!',
+          localStorage.setItem('token', data.token);
+          history.push('/dashboard')
         });
       }
     });
@@ -63,7 +60,7 @@ export default function LoginPage() {
       <Head title="Login | E-Learning System" />
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom border-dark wrapper">
-        <a className="navbar-brand font-weight-bold" href="/">E-Learning System</a>
+        <a className="navbar-brand font-weight-bold my-3" href="/"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
         <button
           className="navbar-toggler"
           type="button"
@@ -74,7 +71,7 @@ export default function LoginPage() {
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <Navlink />
           </ul>
@@ -113,7 +110,7 @@ export default function LoginPage() {
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 fixed-bottom wrapper" />
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper" />
     </>
   );
 };

@@ -1,21 +1,23 @@
 import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
 import FormTemplate from '../components/FormTemplate';
-import UserAuthApi from '../api/UserAuthApi';
-
+import UserAuthApi from '../helpers/UserAuthApi';
 
 export default function RegisterPage() {
-  const [ name, setName ] = useState('');
-  const [ username, setUserName ] = useState('');
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ passwordConfirm, setPasswordConfirm ] = useState('');
-  const [ btnActive, setBtnActive ] = useState(false);
+  const history = useHistory();
+
+  const [name, setName] = useState('');
+  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [btnActive, setBtnActive] = useState(false);
 
   // set submit to active if criteria is met.
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function RegisterPage() {
     } else {
       setBtnActive(false)
     }
-  }, [ name, username, email, password, passwordConfirm ]);
+  }, [name, username, email, password, passwordConfirm]);
 
   // payload for post a new user
   const payload = {
@@ -46,7 +48,7 @@ export default function RegisterPage() {
           'You have successfully created your account',
           'success'
         ).then(() => {
-          window.location.replace('http://localhost:3000/login');
+          history.push('/login');
         });
       } else {
         Swal.fire({
@@ -63,7 +65,7 @@ export default function RegisterPage() {
       <Head title="Register | E-Learning System" />
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom border-dark wrapper">
-        <a className="navbar-brand font-weight-bold" href="/">E-Learning System</a>
+        <a className="navbar-brand font-weight-bold my-3" href="/"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
         <button
           className="navbar-toggler"
           type="button"
@@ -74,7 +76,7 @@ export default function RegisterPage() {
           aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDropdown">
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <Navlink />
           </ul>
