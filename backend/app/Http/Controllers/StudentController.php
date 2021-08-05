@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -36,5 +37,29 @@ class StudentController extends Controller
     ]);
 
     return request()->json('Successfully created.', 200);
+  }
+
+  public function login(Request $request)
+  {
+    $fields = $request->validate([
+      'email' => 'required|string',
+      'password' => 'required|string'
+    ]);
+
+    $student = Student::where('email', $fields['email'])->first();
+
+    if (!$student || !Hash::check($fields['password'], $student->password)) {
+      return response([
+        'message' => 'Bad Credentials'
+      ], 401);
+    }
+
+    $token = $student->createToken('myapptoken')->plainTextToken;
+
+    $response = [
+      'token' => $token
+    ];
+
+    return response($response, 200);
   }
 }
