@@ -12,7 +12,7 @@ import UserAuthApi from '../api/UserAuthApi';
 
 
 export default function LoginPage() {
-  let history = useHistory();
+  const history = useHistory();
 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
