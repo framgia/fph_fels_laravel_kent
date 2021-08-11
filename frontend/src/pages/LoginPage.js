@@ -110,7 +110,7 @@ export default function LoginPage() {
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper" />
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper fixed-bottom" />
     </>
   );
 };

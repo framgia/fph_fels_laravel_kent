@@ -17,7 +17,8 @@ class CreateChoicesTable extends Migration
             $table->id();
             $table->foreignId('word_id');
             $table->string('answer');
-            $table->string('is_correct');
+            $table->foreignId('student_id');
+            $table->boolean('is_correct');
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->id();
             $table->foreignId('student_id');
             $table->foreignId('activity_id');
-            $table->foreignId('activity_type');
+            $table->string('activity_type');
             $table->timestamps();
         });
     }

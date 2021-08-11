@@ -22,4 +22,19 @@ class Student extends Model
     protected $casts = [
       'email_verified_at' => 'datetime'
     ];
+
+    public function activities()
+    {
+      return $this->hasMany(Activity::class);
+    }
+
+    public function studenLogs()
+    {
+      return $this->hasMany(StudentLog::class);
+    }
+
+    public function choices()
+    {
+      return $this->hasMany(Choice::class);
+    }
 }

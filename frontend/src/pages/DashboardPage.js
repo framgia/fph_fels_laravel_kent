@@ -37,8 +37,8 @@ export default function DashboardPage() {
           <Image width={171} height={180} src={User} thumbnail/>
           <div className="profileContainer">
             <h2 className="text-white font-weight-bold ml-3">John Doe</h2>
-            <h6 className="text-white ml-3">Learned 20 Words</h6>
-            <h6 className="text-white ml-3">Learned 10 Lessons</h6>
+            <h6 className="text-white ml-3">Learned 5 Words</h6>
+            <h6 className="text-white ml-3">Learned 5 Lessons</h6>
           </div>
         </Col>
       </Jumbotron>

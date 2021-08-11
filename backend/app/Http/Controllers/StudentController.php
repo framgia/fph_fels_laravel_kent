@@ -57,6 +57,7 @@ class StudentController extends Controller
     $token = $student->createToken('myapptoken')->plainTextToken;
 
     $response = [
+      'student' => $student,
       'token' => $token
     ];
 
