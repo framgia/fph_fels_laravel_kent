@@ -32,6 +32,28 @@ const UserAuthApi = {
     };
 
     return fetch('http://localhost:8000/api/login', options);
+  },
+
+  logout: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${params}`
+      },
+    };
+
+    return fetch('http://localhost:8000/api/logout', options);
+  },
+
+  getAll: (params) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+    return fetch(`http://localhost:8000/api/dashboard/${params}`, options);
   }
 };
 

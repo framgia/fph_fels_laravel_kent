@@ -20,7 +20,7 @@ function App() {
           <Route path="/" exact component={LandingPage} />
           <Route path="/register" exact component={RegisterPage} />
           <Route path="/login" exact component={LoginPage} />
-          <Route path="/dashboard" exact component={DashboardPage} />
+          <Route path="/dashboard/:id" exact component={DashboardPage} />
           <Route>404 Not Found</Route>
         </Switch>
       </Router>

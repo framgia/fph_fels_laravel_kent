@@ -4,30 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
-  // register a new user
   public function store(Request $request) 
   {
     $fields = $request->validate([
       'name' => 'required|string|max:255',
       'username' => 'required|string|max:255',
       'email' => 'required|string|unique:students,email|max:255',
-      'thumbnail' => 'nullable|image|max:255',
-      'password' => 'required|string|confirmed'
+      'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+      'password' => 'required|string|confirmed|min:8|max:255'
     ]);
-
-    /* 
-      $fields['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
-        - This line of code is used to store the image inside the storage/app/thumbnails for easy access.
-        - Profile picture is not yet needed in the register page.
-        - Will integrate this one once the user will be able to acces the profile page.
-
-      'thumbnail' => $fields['thumbnail'],
-        - thumbnail upload is optional in register page.
-    */
     
     Student::create([
       'name' => $fields['name'],
@@ -59,6 +49,19 @@ class StudentController extends Controller
     $response = [
       'student' => $student,
       'token' => $token
+    ];
+
+    return response($response, 200);
+  }
+
+  public function logout()
+  {
+    Auth::user()->tokens->each(function($token, $key) {
+      $token->delete();
+    });
+
+    $response = [
+      'message' => 'Logged out'
     ];
 
     return response($response, 200);

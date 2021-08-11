@@ -1,19 +1,26 @@
 import { NavLink, useHistory } from "react-router-dom";
 import Swal from 'sweetalert2';
 
+import UserAuthApi from "../helpers/UserAuthApi";
+
 export default function MainNavlink() {
   const history = useHistory();
 
   function logoutUser(e) {
     e.preventDefault();
     
-    Swal.fire(
-      'Goodbye',
-      'You have successfully logged out your account',
-      'success'
-    ).then(() => {
-      localStorage.clear();
-      history.push('/');
+    const token = localStorage.getItem('token');
+    
+    UserAuthApi.logout(token).then(res => res.json()).then(data => {
+      console.log(data);
+      Swal.fire(
+        'Goodbye',
+        'You have successfully logged out your account',
+        'success'
+      ).then(() => {
+        localStorage.clear();
+        history.push('/login');
+      });
     });
   };
 

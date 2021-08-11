@@ -5,6 +5,7 @@ import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import CardTemplate from '../components/CardTemplate';
 import Footer from '../components/Footer';
+import NavButton from '../components/NavButton';
 
 const LandingPage = () => {
   return (
@@ -13,16 +14,7 @@ const LandingPage = () => {
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom border-dark wrapper">
         <a className="navbar-brand font-weight-bold my-3" href="/"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-toggle="collapse" 
-          data-target="#navbarNavDropdown" 
-          aria-controls="navbarNavDropdown" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <NavButton />
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <Navlink />

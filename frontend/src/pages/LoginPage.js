@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import Navlink from '../components/Navlink';
 import FormTemplate from '../components/FormTemplate';
 import UserAuthApi from '../helpers/UserAuthApi';
+import NavButton from '../components/NavButton';
 
 export default function LoginPage() {
   const history = useHistory();
@@ -48,8 +49,9 @@ export default function LoginPage() {
           'You have successfully logged in to E-Learning System.',
           'success'
         ).then(() => {
+          localStorage.setItem('id', data.student.id);
           localStorage.setItem('token', data.token);
-          history.push('/dashboard')
+          history.push(`/dashboard/${data.student.id}`);
         });
       }
     });
@@ -61,16 +63,7 @@ export default function LoginPage() {
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom border-dark wrapper">
         <a className="navbar-brand font-weight-bold my-3" href="/"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarNavDropdown"
-          aria-controls="navbarNavDropdown"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <NavButton />
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <Navlink />
