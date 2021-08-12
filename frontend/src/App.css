@@ -66,3 +66,99 @@ body {
 .formSize {
   width: 500px;
 }
+
+/* sidebar */
+.profileNavigation {
+  top: 0;
+  position: fixed;
+}
+
+.sidenavParent {
+  margin-top: 5rem;
+}
+
+.sidenav {
+  height: 100%;
+  width: 18rem;
+  position: fixed;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Image animation */
+@keyframes rotate {
+	 100% {
+		 transform: rotate(1turn);
+	}
+}
+
+.rainbow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 0.3rem;
+}
+
+.rainbow::before {
+  content: '';
+  position: absolute;
+  z-index: -2;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background-color: #399953;
+  background-repeat: no-repeat;
+  background-size: 50% 50%, 50% 50%;
+  background-position: 0 0, 100% 0, 100% 100%, 0 100%;
+  background-image: linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300), linear-gradient(#399953, #399953), linear-gradient(#fbb300, #fbb300);
+  animation: rotate 4s linear infinite;
+}
+
+.rainbow::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 6px;
+  top: 6px;
+  width: calc(100% - 12px);
+  height: calc(100% - 12px);
+  background: white;
+  border-radius: 5px;
+}
+
+.sidenavFollow {
+  display: block;
+}
+
+.sidenavP {
+  display: inline-block;
+  font-size: small;
+}
+
+.sidenavInfoContainer {
+  font-size: small;
+}
+
+.sidenavButton {
+  font-size: small;
+}
+
+.main {
+  margin-left: 18rem; /* Same as the width of the sidenav */
+  font-size: 1rem; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+.mainFollowingTable {
+  width: auto;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

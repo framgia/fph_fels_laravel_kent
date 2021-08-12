@@ -1,4 +1,4 @@
-import { Jumbotron, Row, Col, Image, Table } from 'react-bootstrap';
+import { Jumbotron, Row, Col, Image, Table, Container } from 'react-bootstrap';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -39,7 +39,7 @@ export default function DashboardPage() {
       <Head title="Dashboard | E-Learning System" />
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white wrapper">
-        <a className="navbar-brand headerFont font-weight-bolder my-3" href="/dashboard"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
+        <a className="navbar-brand headerFont font-weight-bolder my-3" href={`/dashboard/${id}`}><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
         <NavButton />
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
@@ -48,16 +48,18 @@ export default function DashboardPage() {
         </div>
       </nav>
 
-      <Jumbotron className="wrapper bg-dark">
-        <Col xs={6} md={4} className="dashboardImage">
-          <Image width={171} height={180} src={thumbnail? studentInfo.thumbnail : defaultProfile} thumbnail/>
-          <div className="profileContainer">
-            <h2 className="text-white font-weight-bold ml-3">{studentInfo.name}</h2>
-            <h6 className="text-white ml-3">Learned {wordsCount} Words</h6>
-            <h6 className="text-white ml-3">Learned {lessonsLearnedCounts} Lessons</h6>
-          </div>
-        </Col>
-      </Jumbotron>
+      <Container className="wrapper">
+        <Jumbotron className="bg-dark">
+          <Col xs={6} md={4} className="dashboardImage">
+            <Image width={171} height={180} src={thumbnail ? studentInfo.thumbnail : defaultProfile} thumbnail />
+            <div className="profileContainer">
+              <h2 className="text-white font-weight-bold ml-3">{studentInfo.name}</h2>
+              <h6 className="text-white ml-3">Learned {wordsCount} Words</h6>
+              <h6 className="text-white ml-3">Learned {lessonsLearnedCounts} Lessons</h6>
+            </div>
+          </Col>
+        </Jumbotron>
+      </Container>
 
       {/* activities */}
       <div className="dashboardWrapper my-5">

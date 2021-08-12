@@ -5,6 +5,7 @@ import UserAuthApi from "../helpers/UserAuthApi";
 
 export default function MainNavlink() {
   const history = useHistory();
+  const id = localStorage.getItem('id');
 
   function logoutUser(e) {
     e.preventDefault();
@@ -12,7 +13,6 @@ export default function MainNavlink() {
     const token = localStorage.getItem('token');
     
     UserAuthApi.logout(token).then(res => res.json()).then(data => {
-      console.log(data);
       Swal.fire(
         'Goodbye',
         'You have successfully logged out your account',
@@ -26,6 +26,17 @@ export default function MainNavlink() {
 
   return (
     <>
+      <li className="nav-item text-center">
+        <NavLink
+          className="text-dark nav-item text-center p-2 navLink nav-link"
+          to={`/dashboard/${id}`}
+          activeStyle={{
+            fontWeight: "bold",
+            color: "black",
+            fontStyle: "italic"
+          }}
+        ><i className="bi bi-house pr-2"></i>Dashboard</NavLink>
+      </li>
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
@@ -51,7 +62,7 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/categories"
+          to={`/profile/${id}`}
           activeStyle={{
             fontWeight: "bold",
             color: "black",
