@@ -75,7 +75,7 @@ export default function ProfilePage() {
           </Container>
 
           <Container className="mt-5">
-            <button type="button" className="btn btn-dark btn-lg btn-block sidenavButton font-weight-light">Update Profile</button>
+            <a href={`/profile/update/${id}`} className="btn btn-dark btn-lg btn-block sidenavButton font-weight-light">Update Profile</a>
           </Container>
         </div>
 
@@ -106,7 +106,7 @@ export default function ProfilePage() {
               </tbody>
             </Table>
           </div>
-          
+
           {/* following */}
           <div className="my-5">
             <h5 className="bg-dark text-center pb-2 pt-2 text-light font-weight-bold font-italic">Following</h5>
@@ -141,7 +141,7 @@ export default function ProfilePage() {
               </tbody>
             </Table>
           </div>
-          
+
           {/* followers */}
           <div className="my-5">
             <h5 className="bg-dark text-center pb-2 pt-2 text-light font-weight-bold font-italic">Followers</h5>

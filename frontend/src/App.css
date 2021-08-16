@@ -149,13 +149,21 @@ body {
 }
 
 .main {
-  margin-left: 18rem; /* Same as the width of the sidenav */
-  font-size: 1rem; /* Increased text to enable scrolling */
+  margin-left: 18rem;
+  font-size: 1rem;
   padding: 0px 10px;
 }
 
 .mainFollowingTable {
   width: auto;
+}
+
+.updateProfileContainer {
+  display: flex;
+}
+
+.updateProfileForm {
+  width: 35rem;
 }
 
 @media screen and (max-height: 450px) {
