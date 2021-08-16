@@ -18,12 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [StudentController::class, 'store']);
 Route::post('/login', [StudentController::class, 'login']);
+Route::get('/students/{id}', [StudentController::class, 'show']);
 
 // dashboard
 Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
 
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
+  Route::put('/students/update/{id}', [StudentController::class, 'update']);
   Route::post('/logout', [StudentController::class, 'logout']);
 });
 

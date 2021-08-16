@@ -37,4 +37,9 @@ class Student extends Model
     {
       return $this->hasMany(Choice::class);
     }
+
+    public function following()
+    {
+      return $this->hasMany(Following::class);
+    }
 }
