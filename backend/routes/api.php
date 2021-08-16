@@ -25,7 +25,7 @@ Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
 
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-  Route::put('/students/update/{id}', [StudentController::class, 'update']);
+  Route::put('/students/update', [StudentController::class, 'update']);
   Route::post('/logout', [StudentController::class, 'logout']);
 });
 

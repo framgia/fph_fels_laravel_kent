@@ -53,6 +53,7 @@ const UserAuthApi = {
         'Content-Type': 'application/json'
       },
     };
+    
     return fetch(`http://localhost:8000/api/dashboard/${params}`, options);
   }
 };

@@ -94,12 +94,13 @@ class StudentController extends Controller
     $studentDetails = Auth::user();
     $student = Student::find($studentDetails->id);
 
-    $student->name = $request->name;
-    $student->username = $request->username;
-    $student->email = $request->email;
-    $student->password = bcrypt($request->password);
-    $student->thumbnail = request()->file('thumbnail')->store('thumbnails');
-
+    $student->update([
+      'name' => $request->name,
+      'username' => $request->username,
+      'email' => $request->email,
+      'password' => $request->password,
+      'thumbnail' => request()->file('thumbnail')->store('thumbnails')
+    ]);
 
     $student->save();
 

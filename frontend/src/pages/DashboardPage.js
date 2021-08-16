@@ -1,5 +1,5 @@
 import { Jumbotron, Row, Col, Image, Table, Container } from 'react-bootstrap';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getResource } from '../redux/actions/userActions';
@@ -15,10 +15,6 @@ export default function DashboardPage() {
   const resource = useSelector((state) => state.allResource.resource);
   const dispatch = useDispatch();
 
-  UserAuthApi.getAll(id).then(res => res.json()).then(data => {
-    dispatch(getResource(data));
-  });
-
   // destructured fetched data from backend
   const studentInfo = resource.student;
   const wordsCount = resource.words_count;
@@ -33,6 +29,12 @@ export default function DashboardPage() {
   for(let i = 0; i < japaneseWord.length; i++) {
     wordsLearned.push({japanese: japaneseWord[i], english: englishWord[i]});
   }
+
+  useEffect(() => {
+    UserAuthApi.getAll(id).then(res => res.json()).then(data => {
+      dispatch(getResource(data));
+    });
+  }, []);
 
   return (
     <>
@@ -73,16 +75,12 @@ export default function DashboardPage() {
           </thead>
           <tbody>
             {
-              activities.map((mapData) => {
-                return (
-                  <>
-                    <tr>
-                      <td>{mapData.activity_type}</td>
-                      <td>{mapData.updated_at}</td>
-                    </tr>
-                  </>
-                );
-              })
+              activities.map((activity) => (
+                <tr key={activity.id}>
+                  <td>{activity.activity_type}</td>
+                  <td>{activity.updated_at}</td>
+                </tr>
+              ))
             }
           </tbody>
         </Table>
