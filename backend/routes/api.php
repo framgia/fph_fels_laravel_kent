@@ -16,8 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// student
 Route::post('/register', [StudentController::class, 'store']);
 Route::post('/login', [StudentController::class, 'login']);
+Route::get('/students', [StudentController::class, 'index']);
 Route::get('/students/{id}', [StudentController::class, 'show']);
 
 // dashboard

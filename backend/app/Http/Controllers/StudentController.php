@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
+  public function index()
+  {
+    // get all students
+    $students = Student::all();
+
+    $response = [
+      'students' => $students
+    ];
+
+    return response($response, 200);
+  }
+
   public function show($id)
   {
     $followingsTable = Following::where('student_id', $id)->where('type', 'follow')->get();
