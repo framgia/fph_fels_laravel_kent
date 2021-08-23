@@ -11,7 +11,7 @@ class StudentLog extends Model
 
     public function student()
     {
-      return $this->belongsTo('App\User');
+      return $this->belongsTo(Student::class);
     }
 
     public function studentAnswer()

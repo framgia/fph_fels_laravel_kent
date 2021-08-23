@@ -1,10 +1,13 @@
 import { NavLink, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Swal from 'sweetalert2';
 
 import UserAuthApi from "../helpers/UserAuthApi";
+import { getFollowings } from '../redux/actions/userActions';
 
 export default function MainNavlink() {
   const history = useHistory();
+  const dispatch = useDispatch();
   const id = localStorage.getItem('id');
 
   function logoutUser(e) {
@@ -23,6 +26,15 @@ export default function MainNavlink() {
       });
     });
   };
+
+  function profileState(e) {
+    e.preventDefault();
+
+    UserAuthApi.getFollowings(id).then(res => res.json()).then(data => {
+      dispatch(getFollowings(data));
+      history.push(`/profile/${id}`);
+    });
+  }
 
   return (
     <>
@@ -68,6 +80,7 @@ export default function MainNavlink() {
             color: "black",
             fontStyle: "italic"
           }}
+          onClick={e => profileState(e)}
         ><i className="bi bi-people pr-2"></i>Profile</NavLink>
       </li>
       <li className="nav-item text-center">

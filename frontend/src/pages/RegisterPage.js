@@ -12,13 +12,12 @@ import NavButton from '../components/NavButton';
 
 export default function RegisterPage() {
   const history = useHistory();
-
-  const [name, setName] = useState('');
-  const [username, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [btnActive, setBtnActive] = useState(false);
+  const [ name, setName ] = useState('');
+  const [ username, setUserName ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ passwordConfirm, setPasswordConfirm ] = useState('');
+  const [ btnActive, setBtnActive ] = useState(false);
 
   // set submit to active if criteria is met.
   useEffect(() => {

@@ -1,3 +1,5 @@
+import ServerPath from "./ServerPath";
+
 const UserAuthApi = {
   register: (params) => {
     const options = {
@@ -15,7 +17,7 @@ const UserAuthApi = {
       })
     };
 
-    return fetch('http://localhost:8000/api/register', options);
+    return fetch(`${ServerPath.api}/register`, options);
   },
 
   login: (params) => {
@@ -31,7 +33,7 @@ const UserAuthApi = {
       })
     };
 
-    return fetch('http://localhost:8000/api/login', options);
+    return fetch(`${ServerPath.api}/login`, options);
   },
 
   logout: (params) => {
@@ -43,7 +45,7 @@ const UserAuthApi = {
       },
     };
 
-    return fetch('http://localhost:8000/api/logout', options);
+    return fetch(`${ServerPath.api}/logout`, options);
   },
 
   getAll: (params) => {
@@ -54,7 +56,53 @@ const UserAuthApi = {
       },
     };
     
-    return fetch(`http://localhost:8000/api/dashboard/${params}`, options);
+    return fetch(`${ServerPath.api}/dashboard/${params}`, options);
+  },
+
+  updateInfo: (params) => {
+    const token = localStorage.getItem('token');
+
+    function getCookie(name) {
+      if(!document.cookie) {
+        return null;
+      }
+
+      const xsrfCookies = document.cookie.split(';')
+      .map(c => c.trim())
+      .filter(c => c.startsWith(name + '='));
+
+      if (xsrfCookies.length === 0) {
+        return null;
+      }
+
+      return decodeURIComponent(xsrfCookies[0].split('=')[1]);
+    };
+
+    const csrfToken = getCookie('CSRF-TOKEN');
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'multipart/form-data',
+        'Access-Control-Allow-Origin': '*', 
+        'X-CSRF-TOKEN': csrfToken,
+        'Authorization': `Bearer ${token}`,
+      },
+      body: params
+    };
+
+    return fetch(`${ServerPath.api}/students/update`, options);
+  },
+
+  getFollowings: (params) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+    
+    return fetch(`${ServerPath.api}/students/${params}`, options);
   }
 };
 

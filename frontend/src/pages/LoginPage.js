@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Head from '../components/Head';
 import Footer from '../components/Footer';
@@ -9,10 +10,11 @@ import Navlink from '../components/Navlink';
 import FormTemplate from '../components/FormTemplate';
 import UserAuthApi from '../helpers/UserAuthApi';
 import NavButton from '../components/NavButton';
+import { getResource } from '../redux/actions/userActions';
 
 export default function LoginPage() {
+  const dispatch = useDispatch();
   const history = useHistory();
-
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ btnActive, setBtnActive ] = useState(false);
@@ -44,6 +46,11 @@ export default function LoginPage() {
           text: 'Something went wrong!',
         });
       } else {
+        // prepares dashboard data to prevent undefined errors
+        UserAuthApi.getAll(data.student.id).then(res => res.json()).then(data => {
+          dispatch(getResource(data));
+        });
+
         Swal.fire(
           'Congratulation!',
           'You have successfully logged in to E-Learning System.',
@@ -103,7 +110,7 @@ export default function LoginPage() {
         </Row>
       </Container>
 
-      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper fixed-bottom" />
+      <Footer footerClass="text-center border-top pt-5 pb-5 mt-5 wrapper footerCustom"/>
     </>
   );
 };

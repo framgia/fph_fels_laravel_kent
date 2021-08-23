@@ -11,6 +11,6 @@ class Choice extends Model
 
     public function choice()
     {
-      return $this->belongsTo('App\Models\Student');
+      return $this->belongsTo(Student::class);
     }
 }

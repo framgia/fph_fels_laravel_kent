@@ -90,7 +90,8 @@ class StudentController extends Controller
     return response($response, 200);
   }
 
-  public function update(Request $request) {
+  public function update(Request $request) 
+  {
     $studentDetails = Auth::user();
     $student = Student::find($studentDetails->id);
 
@@ -98,8 +99,8 @@ class StudentController extends Controller
       'name' => $request->name,
       'username' => $request->username,
       'email' => $request->email,
-      'password' => $request->password,
-      'thumbnail' => request()->file('thumbnail')->store('thumbnails')
+      'password' => bcrypt($request->password),
+      'thumbnail' => $request->file('thumbnail')->store('thumbnails', ['disk' => 'public'])
     ]);
 
     return response('Updated successfully', 200);

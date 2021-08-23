@@ -1,14 +1,76 @@
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { Container, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
 
+import { getResource } from '../redux/actions/userActions';
 import Head from '../components/Head'
 import NavButton from '../components/NavButton'
 import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png'
+import UserAuthApi from '../helpers/UserAuthApi';
+import ServerPath from '../helpers/ServerPath';
 
 export default function UpdateProfilePage() {
   const id = localStorage.getItem('id');
-  const resource = useSelector((state) => state.allResource.resource);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const resourceData = useSelector((state) => state.allResource.resource);
+  const followingsData = useSelector((state) => state.followingsData.followings);
+  const { followings, followers } = followingsData;
+  const { student, words_count, lesson_learned_count } = resourceData;
+  const [ name, setName ] = useState('')
+  const [ username, setUsername ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ selectedFile, setSelectedFile ] = useState();
+
+  const changeHandler = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  function updateUser(e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('username', username);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('thumbnail', selectedFile);
+    formData.append('_method', 'PUT');
+
+    UserAuthApi.updateInfo(formData).then(res => res.json()).then(data => {
+      if (data.student.id == id) {
+        Swal.fire(
+          'Congratulation!',
+          'You have successfully updated your account',
+          'success'
+        ).then(() => {
+
+          UserAuthApi.getAll(data.student.id).then(res => res.json()).then(data => {
+            dispatch(getResource(data));
+          });
+
+          history.push(`/profile/${id}`);
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please try again',
+          text: 'Something went wrong!'
+        });
+
+        setName('');
+        setUsername('');
+        setEmail('');
+        setPassword('');
+      }
+    });
+  }
 
   return (
     <>
@@ -25,17 +87,16 @@ export default function UpdateProfilePage() {
       </nav>
 
       <Container className="wrapper sidenavParent">
-        {/* Sidebar */}
         <div className="sidenav mt-0">
           <Container className="container-sm px-5 pt-5 pb-0 text-center text-white">
             <p className="mb-5 rainbow">
-              <img src={defaultProfile} className="img-thumbnail img-fluid w-100 h-100" alt="..."></img>
+            <img src={student.thumbnail !== null ? ServerPath.thumbnail+student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
             </p>
           </Container>
 
           <Container className="text-center bg-success text-white">
-            <p className="mb-0 p-3 sidenavP">5 <span className="sidenavFollow">followers</span></p>
-            <p className="mb-0 p-3 sidenavP">4 <span className="sidenavFollow">following</span></p>
+            <p className="mb-0 p-3 sidenavP">{followings.length} <span className="sidenavFollow">followers</span></p>
+            <p className="mb-0 p-3 sidenavP">{followers.length} <span className="sidenavFollow">following</span></p>
           </Container>
 
           <Container className="text-white mt-5 p-0 sidenavInfoContainer bg-dark">
@@ -48,23 +109,23 @@ export default function UpdateProfilePage() {
               <tbody className="bg-warning">
                 <tr className="text-dark">
                   <td className="font-italic">Name</td>
-                  <td className="font-weight-bold">{resource.student.name}</td>
+                  <td className="font-weight-bold">{student.name}</td>
                 </tr>
                 <tr className="text-dark">
                   <td className="font-italic">Username</td>
-                  <td className="font-weight-bold">{resource.student.username}</td>
+                  <td className="font-weight-bold">{student.username}</td>
                 </tr>
                 <tr className="text-dark">
                   <td className="font-italic">Email</td>
-                  <td className="font-weight-bold">{resource.student.email}</td>
+                  <td className="font-weight-bold">{student.email}</td>
                 </tr>
                 <tr className="text-dark">
                   <td className="font-italic">Words Learned</td>
-                  <td className="font-weight-bold">{resource.words_count}</td>
+                  <td className="font-weight-bold">{words_count}</td>
                 </tr>
                 <tr className="text-dark">
                   <td className="font-italic">Lessons Completed</td>
-                  <td className="font-weight-bold">{resource.lesson_learned_count}</td>
+                  <td className="font-weight-bold">{lesson_learned_count}</td>
                 </tr>
               </tbody>
             </table>
@@ -78,40 +139,60 @@ export default function UpdateProfilePage() {
           </div>
 
           <Container className="justify-content-center updateProfileContainer">
-            <Form className="updateProfileForm">
-              <Form.Group controlId="formBasicEmail">
+            <Form id="form" method="POST" encType="multipart/form-data" onSubmit={e => updateUser(e)} className="updateProfileForm">
+              <Form.Group controlId="formBasicName">
                 <Form.Label>Update Name</Form.Label>
-                <Form.Control type="text" placeholder="Enter your new name" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter your new name"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                />
               </Form.Group>
 
-              <Form.Group controlId="formBasicEmail">
+              <Form.Group controlId="formBasicUsername">
                 <Form.Label>Update Username</Form.Label>
-                <Form.Control type="text" placeholder="Enter your new username" />
+                <Form.Control 
+                  type="text" 
+                  placeholder="Enter your new username"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+              />
               </Form.Group>
 
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Update Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter your new email" />
-              </Form.Group>
-
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Confirm Old Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter your old password" />
+                <Form.Control 
+                  type="email" 
+                  placeholder="Enter your new email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+              />
               </Form.Group>
 
               <Form.Group controlId="formBasicPassword">
                 <Form.Label>Update Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter your new password" />
+                <Form.Control 
+                  type="password" 
+                  placeholder="Enter your new password"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+              />
               </Form.Group>
 
               <Form.Group controlId="formFile">
                 <Form.Label>Update Profile Picture</Form.Label>
-                <Form.Control type="file" />
+                <Form.Control 
+                  type="file"
+                  id="file"
+                  name="file"
+                  onChange={changeHandler}
+                />
               </Form.Group>
 
               <Button className="bg-primary w-100 mt-5" type="submit">Update</Button>
 
-              <a href={`/profile/${id}`} className="btn btn-dark btn-block mt-2">Go Back</a>
+              <Link className="btn btn-dark btn-block mt-2" to={`/profile/${id}`}>Go Back</Link>
             </Form>
           </Container>
         </div>

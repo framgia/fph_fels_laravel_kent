@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { userReducer } from './userReducer';
+import { userFollowings, userReducer } from './userReducer';
 
 // persist state
 const persistConfig = {
@@ -12,7 +12,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  allResource: userReducer
+  allResource: userReducer,
+  followingsData: userFollowings
 });
 
 export default persistReducer(persistConfig, rootReducer);
