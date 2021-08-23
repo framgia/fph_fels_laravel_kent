@@ -102,8 +102,6 @@ class StudentController extends Controller
       'thumbnail' => request()->file('thumbnail')->store('thumbnails')
     ]);
 
-    $student->save();
-
     return response('Updated successfully', 200);
   }
 }
