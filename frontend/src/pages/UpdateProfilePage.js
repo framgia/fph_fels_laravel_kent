@@ -12,7 +12,6 @@ import NavButton from '../components/NavButton'
 import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png'
 import UserAuthApi from '../helpers/UserAuthApi';
-import ServerPath from '../helpers/ServerPath';
 
 export default function UpdateProfilePage() {
   const id = localStorage.getItem('id');
@@ -90,7 +89,7 @@ export default function UpdateProfilePage() {
         <div className="sidenav mt-0">
           <Container className="container-sm px-5 pt-5 pb-0 text-center text-white">
             <p className="mb-5 rainbow">
-            <img src={student.thumbnail !== null ? ServerPath.thumbnail+student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
+            <img src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
             </p>
           </Container>
 

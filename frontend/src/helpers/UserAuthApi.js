@@ -1,5 +1,3 @@
-import ServerPath from "./ServerPath";
-
 const UserAuthApi = {
   register: (params) => {
     const options = {
@@ -17,7 +15,7 @@ const UserAuthApi = {
       })
     };
 
-    return fetch(`${ServerPath.api}/register`, options);
+    return fetch(`${process.env.REACT_APP_API}/register`, options);
   },
 
   login: (params) => {
@@ -33,7 +31,7 @@ const UserAuthApi = {
       })
     };
 
-    return fetch(`${ServerPath.api}/login`, options);
+    return fetch(`${process.env.REACT_APP_API}/login`, options);
   },
 
   logout: (params) => {
@@ -45,7 +43,7 @@ const UserAuthApi = {
       },
     };
 
-    return fetch(`${ServerPath.api}/logout`, options);
+    return fetch(`${process.env.REACT_APP_API}/logout`, options);
   },
 
   getAll: (params) => {
@@ -56,7 +54,7 @@ const UserAuthApi = {
       },
     };
     
-    return fetch(`${ServerPath.api}/dashboard/${params}`, options);
+    return fetch(`${process.env.REACT_APP_API}/dashboard/${params}`, options);
   },
 
   updateInfo: (params) => {
@@ -91,7 +89,7 @@ const UserAuthApi = {
       body: params
     };
 
-    return fetch(`${ServerPath.api}/students/update`, options);
+    return fetch(`${process.env.REACT_APP_API}/students/update`, options);
   },
 
   getFollowings: (params) => {
@@ -102,7 +100,7 @@ const UserAuthApi = {
       },
     };
     
-    return fetch(`${ServerPath.api}/students/${params}`, options);
+    return fetch(`${process.env.REACT_APP_API}/students/${params}`, options);
   }
 };
 

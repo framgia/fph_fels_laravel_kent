@@ -6,7 +6,6 @@ import Head from '../components/Head';
 import NavButton from '../components/NavButton';
 import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png';
-import ServerPath from '../helpers/ServerPath';
 
 export default function ProfilePage() {
   const id = localStorage.getItem('id');
@@ -35,7 +34,11 @@ export default function ProfilePage() {
         <div className="sidenav mt-0">
           <Container className="container-sm px-5 pt-5 pb-0 text-center text-white">
             <p className="mb-5 rainbow">
-              <img src={student.thumbnail !== null ? ServerPath.thumbnail+student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
+              <img 
+                src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+student.thumbnail : defaultProfile} 
+                className="profileImage" 
+                alt=".."
+              ></img>
             </p>
           </Container>
 
@@ -124,7 +127,8 @@ export default function ProfilePage() {
                         <tr className="text-center">
                           <td className="align-middle">
                             <img 
-                              src={following.thumbnail !== null ? ServerPath.thumbnail+following.thumbnail : defaultProfile} className="rounded-circle" 
+                              src={following.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+following.thumbnail : defaultProfile} 
+                              className="rounded-circle" 
                               width={50} 
                               height="50" 
                               alt="avatar">
@@ -159,7 +163,13 @@ export default function ProfilePage() {
                       <>
                         <tr className="text-center">
                           <td className="align-middle">
-                            <img src={followers.thumbnail !== null ? ServerPath.thumbnail+followers.thumbnail : defaultProfile}  className="rounded-circle" width={50} height={50} alt="avatar"></img>
+                            <img 
+                              src={followers.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+followers.thumbnail : defaultProfile}  
+                              className="rounded-circle" 
+                              width={50} 
+                              height={50} 
+                              alt="avatar"
+                            ></img>
                           </td>
                           <td className="align-middle">{followers.name}</td>
                           <td className="align-middle">{followers.email}</td>

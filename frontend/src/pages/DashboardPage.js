@@ -7,7 +7,6 @@ import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png';
 import NavButton from '../components/NavButton';
 import Footer from '../components/Footer';
-import ServerPath from '../helpers/ServerPath';
 
 export default function DashboardPage() {
   const id = localStorage.getItem('id');
@@ -36,7 +35,12 @@ export default function DashboardPage() {
         <Container className="wrapper">
           <Jumbotron className="bg-dark">
             <Col xs={6} md={4} className="dashboardImage">
-              <Image className="dashboardThumbnail" width={171} height={180} src={student.thumbnail !== null ? ServerPath.thumbnail + student.thumbnail : defaultProfile}/>
+              <Image 
+                className="dashboardThumbnail" 
+                width={171} 
+                height={180} 
+                src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL + student.thumbnail : defaultProfile}
+              />
               <div className="profileContainer">
                 <h2 className="text-white font-weight-bold ml-3">{student.name}</h2>
                 <h6 className="text-white ml-3">Learned {words_count} Words</h6>
