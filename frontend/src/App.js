@@ -10,6 +10,7 @@ import LoginPage from './pages/LoginPage';
 import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import UpdateProfilePage from './pages/UpdateProfilePage';
+import UsersPage from './pages/UsersPage';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/dashboard/:id" exact component={DashboardPage} />
           <Route path="/profile/:id" exact component={ProfilePage} />
           <Route path="/profile/update/:id" exact component={UpdateProfilePage} />
+          <Route path="/users" exact component={UsersPage} />
           <Route>404 Not Found</Route>
         </Switch>
       </Router>

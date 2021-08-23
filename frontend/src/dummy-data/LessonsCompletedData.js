@@ -1,4 +1,4 @@
-const LessonsCompleted = [
+const LessonsCompletedData = [
   {
     name: 'Japanese Chapter 1',
     date: '2021-08-09'
@@ -21,4 +21,4 @@ const LessonsCompleted = [
   },
 ];
 
-export default LessonsCompleted;
+export default LessonsCompletedData;

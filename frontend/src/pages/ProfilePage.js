@@ -3,9 +3,8 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Head from '../components/Head';
-import NavButton from '../components/NavButton';
-import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png';
+import NavbarTemplate from '../components/NavbarTemplate';
 
 export default function ProfilePage() {
   const id = localStorage.getItem('id');
@@ -17,17 +16,7 @@ export default function ProfilePage() {
     <>
       <Head title="Profile | E-Learning System" />
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-white wrapper fixed-top profileNavigation">
-        <a className="navbar-brand headerFont font-weight-bolder my-3" href={`/dashboard/${id}`}>
-          <span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span>
-        </a>
-        <NavButton />
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul className="navbar-nav">
-            <MainNavlink />
-          </ul>
-        </div>
-      </nav>
+      <NavbarTemplate navClass="navbar navbar-expand-lg navbar-light bg-white wrapper fixed-top profileNavigation" />
 
       <Container className="wrapper sidenavParent">
         {/* Sidebar */}
@@ -36,7 +25,7 @@ export default function ProfilePage() {
             <p className="mb-5 rainbow">
               <img 
                 src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+student.thumbnail : defaultProfile} 
-                className="profileImage" 
+                className="profileImage"
                 alt=".."
               ></img>
             </p>
@@ -87,7 +76,7 @@ export default function ProfilePage() {
         <div className="main">
           {/* activities */}
           <div className="my-5">
-            <h5 className="bg-dark text-center pb-2 pt-3 text-light font-weight-bold font-italic">Activities</h5>
+            <h5 className="bg-dark text-center pb-2 pt-2 text-light font-weight-bold font-italic">Activities</h5>
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
@@ -127,7 +116,7 @@ export default function ProfilePage() {
                         <tr className="text-center">
                           <td className="align-middle">
                             <img 
-                              src={following.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+following.thumbnail : defaultProfile} 
+                              src={following.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL + following.thumbnail : defaultProfile} 
                               className="rounded-circle" 
                               width={50} 
                               height="50" 
@@ -164,7 +153,7 @@ export default function ProfilePage() {
                         <tr className="text-center">
                           <td className="align-middle">
                             <img 
-                              src={followers.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+followers.thumbnail : defaultProfile}  
+                              src={followers.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL + followers.thumbnail : defaultProfile}  
                               className="rounded-circle" 
                               width={50} 
                               height={50} 

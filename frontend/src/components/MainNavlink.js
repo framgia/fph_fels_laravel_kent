@@ -63,13 +63,13 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/categories"
+          to="/users"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
             fontStyle: "italic"
           }}
-        ><i className="bi bi-person pr-2"></i>Users</NavLink>
+        ><i className="bi bi-people pr-2"></i>Users</NavLink>
       </li>
       <li className="nav-item text-center">
         <NavLink
@@ -81,7 +81,7 @@ export default function MainNavlink() {
             fontStyle: "italic"
           }}
           onClick={e => profileState(e)}
-        ><i className="bi bi-people pr-2"></i>Profile</NavLink>
+        ><i className="bi bi-person pr-2"></i>Profile</NavLink>
       </li>
       <li className="nav-item text-center">
         <NavLink

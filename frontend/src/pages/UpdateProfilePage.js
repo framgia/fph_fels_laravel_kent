@@ -8,10 +8,9 @@ import Swal from 'sweetalert2';
 
 import { getResource } from '../redux/actions/userActions';
 import Head from '../components/Head'
-import NavButton from '../components/NavButton'
-import MainNavlink from '../components/MainNavlink';
 import defaultProfile from '../images/defaultProfile.png'
 import UserAuthApi from '../helpers/UserAuthApi';
+import NavbarTemplate from '../components/NavbarTemplate';
 
 export default function UpdateProfilePage() {
   const id = localStorage.getItem('id');
@@ -69,27 +68,19 @@ export default function UpdateProfilePage() {
         setPassword('');
       }
     });
-  }
+  };
 
   return (
     <>
       <Head title="Profile | E-Learning System" />
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-white wrapper fixed-top profileNavigation">
-        <a className="navbar-brand headerFont font-weight-bolder my-3" href={`/dashboard/${id}`}><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
-        <NavButton />
-        <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-          <ul className="navbar-nav">
-            <MainNavlink />
-          </ul>
-        </div>
-      </nav>
+      <NavbarTemplate navClass="navbar navbar-expand-lg navbar-light bg-white wrapper fixed-top profileNavigation" />
 
       <Container className="wrapper sidenavParent">
         <div className="sidenav mt-0">
           <Container className="container-sm px-5 pt-5 pb-0 text-center text-white">
             <p className="mb-5 rainbow">
-            <img src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL+student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
+            <img src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL + student.thumbnail : defaultProfile} className="profileImage" alt=".."></img>
             </p>
           </Container>
 
@@ -134,7 +125,7 @@ export default function UpdateProfilePage() {
         <div className="main">
           {/* activities */}
           <div className="my-5">
-            <h5 className="bg-secondary text-center pb-2 pt-3 text-light font-weight-bold font-italic">Update Profile Information</h5>
+            <h5 className="bg-secondary text-center pb-2 pt-2 text-light font-weight-bold font-italic">Update Profile Information</h5>
           </div>
 
           <Container className="justify-content-center updateProfileContainer">

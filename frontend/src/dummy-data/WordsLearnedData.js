@@ -1,4 +1,4 @@
-const WordsLearned = [
+const WordsLearnedData = [
   {
     japanese: 'Japanese 1',
     english: 'English 1'
@@ -21,4 +21,4 @@ const WordsLearned = [
   }
 ]
 
-export default WordsLearned;
+export default WordsLearnedData;
