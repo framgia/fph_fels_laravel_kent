@@ -13,7 +13,6 @@ const Profile = () => {
   const dashboardIndex = useSelector((state) => state.dashboard.index);
   const { status, index } = useSelector((state) => state.profile);
   const { student, words_count, lesson_learned_count, activities } = dashboardIndex;
-  console.log(student);
 
   useEffect(() => {
     dispatch(getProfile(id));
@@ -77,7 +76,7 @@ const Profile = () => {
               </Container>
 
               <Container className="mt-5">
-                <Link className="btn btn-dark btn-lg btn-block sidenavButton font-weight-light" to={`/profile/update/${id}`}>Update Profile</Link>
+                <Link className="btn btn-dark btn-lg btn-block sidenavButton font-weight-light" to="/profile/update">Update Profile</Link>
               </Container>
             </div>
 

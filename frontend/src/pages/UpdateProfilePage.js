@@ -48,7 +48,7 @@ export default function UpdateProfilePage() {
         ).then(() => {
           dispatch(getDashboard(id));
 
-          history.push(`/profile/${id}`);
+          history.push(`/profile`);
         });
       } else {
         Swal.fire({
@@ -172,7 +172,7 @@ export default function UpdateProfilePage() {
 
               <Button className="bg-primary w-100 mt-5" type="submit">Update</Button>
 
-              <Link className="btn btn-dark btn-block mt-2" to={`/profile/${id}`}>Go Back</Link>
+              <Link className="btn btn-dark btn-block mt-2" to={`/profile`}>Go Back</Link>
             </Form>
           </Container>
         </div>
