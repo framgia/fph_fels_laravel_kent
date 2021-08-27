@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 
 import UserAuthApi from "../helpers/UserAuthApi";
 
-export default function MainNavlink() {
+export default function AdminNavlink() {
   const token = localStorage.getItem('token');
   const history = useHistory();
 
@@ -27,7 +27,7 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/dashboard"
+          to="/admin/dashboard"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
@@ -38,7 +38,7 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/categories"
+          to="/admin/categories"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
@@ -49,24 +49,13 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/users"
+          to="/admins"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
             fontStyle: "italic"
           }}
-        ><i className="bi bi-people pr-2"></i>Users</NavLink>
-      </li>
-      <li className="nav-item text-center">
-        <NavLink
-          className="text-dark nav-item text-center p-2 navLink nav-link"
-          to="/profile"
-          activeStyle={{
-            fontWeight: "bold",
-            color: "black",
-            fontStyle: "italic"
-          }}
-        ><i className="bi bi-person pr-2"></i>Profile</NavLink>
+        ><i className="bi bi-people pr-2"></i>Admins</NavLink>
       </li>
       <li className="nav-item text-center">
         <NavLink
