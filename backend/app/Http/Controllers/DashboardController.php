@@ -18,26 +18,32 @@ class DashboardController extends Controller
     // student info
     $student = Student::find($id);
 
+    // words learned
+    $japaneseWords = [];
+    $englishWords = [];
+    $choices = [];
+
+    $studentAnswers = StudentAnswer::where('student_id', $id)->get();
+    foreach ($studentAnswers as $answer) {
+      array_push($choices, Choice::find($answer->choice_id));
+    }
+
+    foreach ($choices as $choice) {
+      if ($choice->is_correct === 1) {
+        array_push($englishWords, Choice::find($choice->id)->answer);
+        array_push($japaneseWords, Word::find($choice->word_id)->question);
+      }
+    }
+
     // words count
-    $wordCount = Choice::where('student_id', $id)->where('is_correct', 1)->count();
+    $wordsCount = count($englishWords);
+    
 
     // lesson learned
     $lessonLearned = StudentLog::where('student_id', $id)->where('quiz_id', '!=', 0)->count();
 
     // activities
     $activities = Activity::where('student_id', $id)->get();
-
-    // words learned
-    $japaneseWords = [];
-    $englishWords = [];
-    $answeredWords = Choice::where('student_id', $id)->where('is_correct', 1)->get();
-    foreach ($answeredWords as $answer) {
-      $questionWords = Word::where('id', $answer->word_id)->get();
-      foreach ($questionWords as $question) {
-        array_push($japaneseWords, Word::find($question->id)->question);
-        array_push($englishWords, Choice::find($question->id)->answer);
-      }
-    }
 
     // lesson completed
     $lessonCompleted = [];
@@ -49,7 +55,7 @@ class DashboardController extends Controller
     // response
     $response = [
       'student' => $student,
-      'words_count' => $wordCount,
+      'words_count' => $wordsCount,
       'lesson_learned_count' => $lessonLearned,
       'activities' => $activities,
       'words_learned' => array('japanese' => $japaneseWords, 'english' => $englishWords),
