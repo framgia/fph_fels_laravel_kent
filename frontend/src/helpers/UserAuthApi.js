@@ -18,22 +18,6 @@ const UserAuthApi = {
     return fetch(`${process.env.REACT_APP_API}/register`, options);
   },
 
-  login: (params) => {
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest'
-      },
-      body: JSON.stringify({
-        email: params.email,
-        password: params.password
-      })
-    };
-
-    return fetch(`${process.env.REACT_APP_API}/login`, options);
-  },
-
   logout: (params) => {
     const options = {
       method: 'POST',
@@ -100,7 +84,106 @@ const UserAuthApi = {
       },
     };
     
+    return fetch(`${process.env.REACT_APP_API}/followings/${params}`, options);
+  },
+
+  getStudents: () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/students`, options);
+  },
+
+  getStudent: (params) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
     return fetch(`${process.env.REACT_APP_API}/students/${params}`, options);
+  },
+
+  follow: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        student_id: params.loggedId,
+        student_follow_id: params.id
+      })
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/followings/follow`, options);
+  },
+
+  unfollow: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        student_id: params.loggedId,
+        student_follow_id: params.id
+      })
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/followings/unfollow`, options);
+  },
+
+  getQuizzes: () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/quizzes`, options);
+  },
+
+  getQuestion: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: params
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/lesson/quiz`, options);
+  },
+
+  storeAnswer: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: params
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/lesson/quiz/answer`, options);
+  },
+
+  getAnswers: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      },
+      body: params
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/lesson/quiz/answer/all`, options);
   }
 };
 

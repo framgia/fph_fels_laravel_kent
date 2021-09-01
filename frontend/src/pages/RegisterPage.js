@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import Head from '../components/Head';
 import Navlink from '../components/Navlink';
 import Footer from '../components/Footer';
-import FormTemplate from '../components/FormTemplate';
+import FormTemplate from '../shared/FormTemplate/FormTemplate';
 import UserAuthApi from '../helpers/UserAuthApi';
 import NavButton from '../components/NavButton';
 

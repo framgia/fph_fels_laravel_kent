@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap';
 
-export default function FormTemplate(props) {
+const FormTemplate = (props) => {
   return (
     <>
       <Form.Group className="w-100 mx-auto px-0" controlId={props.formControlId}>
@@ -10,3 +10,5 @@ export default function FormTemplate(props) {
     </>
   );
 };
+
+export default FormTemplate;

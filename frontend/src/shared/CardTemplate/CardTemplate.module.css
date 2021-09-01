@@ -1,0 +1,14 @@
+.cardHeader {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.cardText {
+  font-size: 18px;
+}
+
+/* card template */
+.cardHover:hover {
+  background: #ffc107; 
+  color: black;
+}
