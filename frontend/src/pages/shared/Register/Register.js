@@ -1,16 +1,17 @@
 import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 import { Form, Container, Row, Button } from 'react-bootstrap';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import Head from '../components/Head';
-import Navlink from '../components/Navlink';
-import Footer from '../components/Footer';
-import FormTemplate from '../components/FormTemplate';
-import UserAuthApi from '../helpers/UserAuthApi';
-import NavButton from '../components/NavButton';
+import Head from '../../../shared/Head/Head';
+import Navlink from '../../../shared/Navlink.js/Navlink';
+import Footer from '../../../shared/Footer/Footer';
+import FormTemplate from '../../../shared/FormTemplate/FormTemplate';
+import StudentAPI from '../../../api/StudentAPI';
+import NavbarToggle from '../../../shared/NavbarToggle/NavbarToggle';
+import styles from './Register.module.css';
 
-export default function RegisterPage() {
+const Register = () => {
   const history = useHistory();
   const [ name, setName ] = useState('');
   const [ username, setUserName ] = useState('');
@@ -19,7 +20,7 @@ export default function RegisterPage() {
   const [ passwordConfirm, setPasswordConfirm ] = useState('');
   const [ btnActive, setBtnActive ] = useState(false);
 
-  // set submit to active if criteria is met.
+  // set submit button to active if criteria is met.
   useEffect(() => {
     if (((name && username && email && password && passwordConfirm) !== "") && (password === passwordConfirm)) {
       setBtnActive(true)
@@ -38,10 +39,10 @@ export default function RegisterPage() {
   };
 
   // register a user
-  function registerUser(e) {
+  const registerUser = (e) => {
     e.preventDefault();
 
-    UserAuthApi.register(payload).then(res => res.json()).then(data => {
+    StudentAPI.register(payload).then(res => res.json()).then(data => {
       if (data === 200) {
         Swal.fire(
           'Congratulation!',
@@ -65,8 +66,10 @@ export default function RegisterPage() {
       <Head title="Register | E-Learning System" />
 
       <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom border-dark wrapper">
-        <a className="navbar-brand font-weight-bold my-3" href="/"><span className="p-3 rounded-lg border border-dark brandName">E-Learning System</span></a>
-        <NavButton />
+        <Link className="navbar-brand font-weight-bold my-3" to="/">
+          <span className={`p-3 rounded-lg border border-dark ${styles.brandName}`}>E-Learning System</span>
+        </Link>
+        <NavbarToggle />
         <div className="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <Navlink />
@@ -77,7 +80,7 @@ export default function RegisterPage() {
       <Container className="wrapper">
         <Row className="justify-content-center">
           <Form onSubmit={(e) => registerUser(e)} className="formSize bg-white p-4">
-            <h1 className="my-5 pt-5 text-center font-weight-bold">Register Page</h1>
+            <h1 className={`my-5 pt-5 text-center ${styles.headerFontWeight}`}>Register Page</h1>
             <FormTemplate
               formControlId="formBasicName"
               formLabel="Name"
@@ -125,9 +128,9 @@ export default function RegisterPage() {
 
             {
               btnActive ?
-                <Button className="bg-primary d-block mx-auto w-100 my-5" type="submit">Submit</Button>
+                <Button className="bg-warning d-block mx-auto w-100 my-5 border-0 text-dark font-weight-bold" type="submit">Submit</Button>
                 :
-                <Button className="bg-primary d-block mx-auto w-100 my-5" type="submit" disabled>Submit</Button>
+                <Button className="bg-warning d-block mx-auto w-100 my-5 border-0 text-dark font-weight-bold" type="submit" disabled>Submit</Button>
             }
           </Form>
         </Row>
@@ -137,3 +140,5 @@ export default function RegisterPage() {
     </>
   );
 };
+
+export default Register;

@@ -1,0 +1,30 @@
+.brandName {
+  font-weight: 900;
+}
+
+.brandName:hover {
+  background: black;
+  color: white;
+  font-weight: 900;
+}
+
+.headerFontWeight {
+  font-weight: 900;
+}
+
+@media screen and (min-width: 1001px) {
+  .footerClass {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .footerClass {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

@@ -1,0 +1,17 @@
+.brandName {
+  font-weight: 900;
+}
+
+.brandName:hover {
+  background: black;
+  color: white;
+  font-weight: 900;
+}
+
+.headerFontWeight {
+  font-weight: 900;
+}
+
+.fontWeight700 {
+  font-weight: 700;
+}

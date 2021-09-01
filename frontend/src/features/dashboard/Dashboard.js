@@ -11,7 +11,7 @@ const Dashboard = () => {
   const { index, status } = useSelector((state) => state.dashboard);
   const { student, words_count, lesson_learned_count, activities, lesson_completed, words_learned } = index;
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(getDashboard(id));
   }, [ dispatch, id ]);

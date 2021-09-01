@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FollowingController;
+use App\Http\Controllers\QuizController;
+use App\Http\Controllers\LessonController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +25,21 @@ Route::post('/login', [StudentController::class, 'login']);
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/students/{id}', [StudentController::class, 'show']);
 
+// followings
+Route::get('/followings/{id}', [FollowingController::class, 'index']);
+Route::post('/followings/follow', [FollowingController::class, 'follow']);
+Route::post('/followings/unfollow', [FollowingController::class, 'unfollow']);
+
 // dashboard
 Route::get('/dashboard/{id}', [DashboardController::class, 'index']);
+
+// quizzes
+Route::get('/quizzes', [QuizController::class, 'index']);
+
+// lesson
+Route::post('/lesson/quiz', [LessonController::class, 'getQuestion']);
+Route::post('/lesson/quiz/answer', [LessonController::class, 'storeStudentAnswer']);
+Route::post('/lesson/quiz/answer/all', [LessonController::class, 'getStudentAnswers']);
 
 // protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {

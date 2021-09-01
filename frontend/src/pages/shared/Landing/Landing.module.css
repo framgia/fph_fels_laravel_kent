@@ -1,0 +1,30 @@
+.brandName {
+  font-weight: 900;
+}
+
+.brandName:hover {
+  background: black;
+  color: white;
+  font-weight: 900;
+}
+
+.jumbotronHeader {
+  font-weight: 900;
+}
+
+.jumbotronText {
+  font-size: 18px;
+}
+
+.jumbotronButton {
+  border: 1px solid black;
+}
+
+.cardHover:hover {
+  background: rgb(238, 238, 238); 
+  color: white;
+}
+
+.cardText {
+  font-size: 18px;
+}
