@@ -24,21 +24,10 @@ class StudentController extends Controller
 
   public function show($id)
   {
-    $followingsTable = Following::where('student_id', $id)->where('type', 'follow')->get();
-    $followings = [];
-    foreach ($followingsTable as $following) {
-      array_push($followings, Student::find($following->student_follow));
-    }
-
-    $followersTable = Following::where('student_id', $id)->where('type', 'follower')->get();
-    $followers = [];
-    foreach ($followersTable as $following) {
-      array_push($followers, Student::find($following->student_follower));
-    }
+    $student = Student::find($id);
 
     $response = [
-      'followings' => $followings,
-      'followers' => $followers
+      'student' => $student
     ];
 
     return response($response, 200);

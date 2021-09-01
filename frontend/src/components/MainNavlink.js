@@ -4,13 +4,11 @@ import Swal from 'sweetalert2';
 import UserAuthApi from "../helpers/UserAuthApi";
 
 export default function MainNavlink() {
+  const token = localStorage.getItem('token');
   const history = useHistory();
-  const id = localStorage.getItem('id');
 
   function logoutUser(e) {
     e.preventDefault();
-    
-    const token = localStorage.getItem('token');
     
     UserAuthApi.logout(token).then(res => res.json()).then(data => {
       Swal.fire(
@@ -29,7 +27,7 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to={`/dashboard/${id}`}
+          to="/dashboard"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
@@ -62,7 +60,7 @@ export default function MainNavlink() {
       <li className="nav-item text-center">
         <NavLink
           className="text-dark nav-item text-center p-2 navLink nav-link"
-          to={`/profile/${id}`}
+          to="/profile"
           activeStyle={{
             fontWeight: "bold",
             color: "black",
