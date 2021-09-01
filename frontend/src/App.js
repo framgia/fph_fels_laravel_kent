@@ -11,6 +11,9 @@ import DashboardPage from './pages/DashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import UpdateProfilePage from './pages/UpdateProfilePage';
 import UsersPage from './pages/UsersPage';
+import UserPage from './pages/UserPage';
+import CategoriesPage from './pages/CategoriesPage';
+import QuizPage from './pages/QuizPage';
 
 
 function App() {
@@ -21,10 +24,13 @@ function App() {
           <Route path="/" exact component={LandingPage} />
           <Route path="/register" exact component={RegisterPage} />
           <Route path="/login" exact component={LoginPage} />
-          <Route path="/dashboard/:id" exact component={DashboardPage} />
-          <Route path="/profile/:id" exact component={ProfilePage} />
-          <Route path="/profile/update/:id" exact component={UpdateProfilePage} />
+          <Route path="/dashboard" exact component={DashboardPage} />
+          <Route path="/profile" exact component={ProfilePage} />
+          <Route path="/profile/update" exact component={UpdateProfilePage} />
           <Route path="/users" exact component={UsersPage} />
+          <Route path="/users/:id" exact component={UserPage} />
+          <Route path="/categories" exact component={CategoriesPage} />
+          <Route path="/categories/:id" exact component={QuizPage} />
           <Route>404 Not Found</Route>
         </Switch>
       </Router>
