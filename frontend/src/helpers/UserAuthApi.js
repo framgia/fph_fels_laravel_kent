@@ -100,7 +100,59 @@ const UserAuthApi = {
       },
     };
     
+    return fetch(`${process.env.REACT_APP_API}/followings/${params}`, options);
+  },
+
+  getStudents: () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/students`, options);
+  },
+
+  getStudent: (params) => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
     return fetch(`${process.env.REACT_APP_API}/students/${params}`, options);
+  },
+
+  follow: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        student_id: params.loggedId,
+        student_follow_id: params.id
+      })
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/followings/follow`, options);
+  },
+
+  unfollow: (params) => {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        student_id: params.loggedId,
+        student_follow_id: params.id
+      })
+    };
+
+    return fetch(`${process.env.REACT_APP_API}/followings/unfollow`, options);
   }
 };
 
