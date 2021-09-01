@@ -180,6 +180,10 @@ body {
   height: 180px;
 }
 
+.quizFont {
+  font-size: 4rem;
+}
+
 @media screen and (min-width: 1001px) {
   .footerCustom {
     position: fixed;

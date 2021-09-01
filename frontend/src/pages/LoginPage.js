@@ -50,7 +50,7 @@ export default function LoginPage() {
         ).then(() => {
           localStorage.setItem('id', data.student.id);
           localStorage.setItem('token', data.token);
-          history.push(`/dashboard/${data.student.id}`);
+          history.push(`/dashboard`);
         });
       }
     });
