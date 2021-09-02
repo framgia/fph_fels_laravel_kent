@@ -2,24 +2,27 @@ import { Container, Jumbotron, Col, Image, Table, Row } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { getDashboard } from './dashboardSlice';
-import defaultProfile from '../../images/defaultProfile.png';
-import SpinnerTemplate from '../../components/SpinnerTemplate';
+import { fetchDashboard } from '../../../features/dashboard/dashboardSlice';
+import defaultProfile from '../../../images/defaultProfile.png';
+import Spinner from '../../../shared/Spinner/Spinner';
+import Head from '../../../shared/Head/Head';
+import NavbarUser from '../../../shared/NavbarUser/NavbarUser';
+import styles from './Dashboard.module.css';
 
 const Dashboard = () => {
   const id = localStorage.getItem('id');
-  const { index, status } = useSelector((state) => state.dashboard);
-  const { student, words_count, lesson_learned_count, activities, lesson_completed, words_learned } = index;
+  const { dashboard, status } = useSelector((state) => state.dashboard);
+  const { student, words_count, lesson_learned_count, activities, lesson_completed, words_learned } = dashboard;
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
-    dispatch(getDashboard(id));
+    dispatch(fetchDashboard(id));
   }, [ dispatch, id ]);
 
   const DashboardDetails = () => {
     if(status === 'loading' || status === null) {
       return (
-        <SpinnerTemplate />
+        <Spinner />
       );
     } else {
       const wordsLearned = [];
@@ -30,6 +33,10 @@ const Dashboard = () => {
 
       return (
         <>
+          <Head title="Dashboard | E-Learning System" />
+
+          <NavbarUser navClass="navbar navbar-expand-lg navbar-light bg-white wrapper"/>
+
           <Container className="wrapper mt-2">
             <Jumbotron className="bg-dark">
               <Col xs={6} md={4} className="dashboardImage">
@@ -40,16 +47,16 @@ const Dashboard = () => {
                   src={student.thumbnail !== null ? process.env.REACT_APP_THUMBNAIL + student.thumbnail : defaultProfile}
                 />
                 <div className="profileContainer">
-                  <h2 className="text-white font-weight-bold ml-3">{student.name}</h2>
-                  <h6 className="text-white ml-3">Learned {words_count} Words</h6>
-                  <h6 className="text-white ml-3">Learned {lesson_learned_count} Lessons</h6>
+                  <h2 className={`text-white ml-3 ${styles.fontWeight900}`}>{student.name}</h2>
+                  <h6 className="text-white ml-3 text-warning">Learned Words | {words_count}</h6>
+                  <h6 className="text-white ml-3 text-warning">Learned Lessons | {lesson_learned_count}</h6>
                 </div>
               </Col>
             </Jumbotron>
           </Container>
 
           <div className="dashboardWrapper my-5">
-            <h4 className="bg-success text-center p-3 text-light font-weight-bold">Activities</h4>
+            <h4 className={`bg-warning text-center p-3 text-black ${styles.fontWeight900}`}>Activities</h4>
             <Table striped bordered hover size="sm">
               <thead>
                 <tr>
@@ -73,7 +80,7 @@ const Dashboard = () => {
           <div className="dashboardWrapper my-5">
             <Row>
               <Col className="">
-                <h4 className="bg-primary text-center p-3 text-light font-weight-bold">Words Learned</h4>
+                <h4 className={`bg-dark text-center p-3 text-white ${styles.fontWeight900}`}>Words Learned</h4>
                   <Table striped bordered hover size="sm">
                     <thead>
                       <tr>
@@ -99,7 +106,7 @@ const Dashboard = () => {
               </Col>
               
               <Col>
-                <h4 className="bg-warning text-center p-3 text-light font-weight-bold">Lessons Completed</h4>
+                <h4 className={`bg-dark text-center p-3 text-white ${styles.fontWeight900}`}>Lessons Completed</h4>
                 <Table striped bordered hover size="sm">
                   <thead>
                     <tr>

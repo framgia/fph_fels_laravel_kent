@@ -1,31 +1,31 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import UserAuthApi from '../../helpers/UserAuthApi';
+import DashboardAPI from '../../api/DashboardAPI';
 
-export const getDashboard = createAsyncThunk('dashboard/id', async (params) => {
-    const response = await UserAuthApi.getAll(params);
+export const fetchDashboard = createAsyncThunk('dashboard/id', async (params) => {
+    const response = await DashboardAPI.index(params);
 
     return response.json();
   }
-)
+);
 
 const dashboardSlice = createSlice({
   name: 'dashboard',
   initialState: {
-    index: [],
+    dashboard: [],
     status: null, 
   },
 
   extraReducers: {
-    [ getDashboard.pending ]: (state) => {
+    [ fetchDashboard.pending ]: (state) => {
       state.status = 'loading'
     },
 
-    [ getDashboard.fulfilled ]: (state, {payload}) => {
-      state.index = payload
+    [ fetchDashboard.fulfilled ]: (state, {payload}) => {
+      state.dashboard = payload
       state.status = 'success'
     },
 
-    [ getDashboard.rejected ]: (state) => {
+    [ fetchDashboard.rejected ]: (state) => {
       state.status = 'failed'
     }
   }
